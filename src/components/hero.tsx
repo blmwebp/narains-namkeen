@@ -1,6 +1,4 @@
 "use client";
-import { HoverMedia, PackPreview } from "@/components/hover-media";
-
 import { useEffect, useState, useRef } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { ArrowLeft, ArrowRight, Pause, Play } from "lucide-react";
@@ -53,54 +51,62 @@ export function Hero() {
       }}
     >
       <div className="container hero-inner">
-        <AnimatePresence mode="wait" initial={false}>
-          <motion.div
-            key={index}
-            className="hero-slide"
-            initial={{
-              opacity: 0,
-              y: reduced ? 0 : 24,
-              filter: reduced ? "none" : "blur(5px)",
-            }}
-            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            exit={{
-              opacity: 0,
-              y: reduced ? 0 : -18,
-              filter: reduced ? "none" : "blur(3px)",
-            }}
-            transition={{ duration: reduced ? 0 : 0.35 }}
-          >
-            <div className="hero-copy">
-              <span className="eyebrow">{slide.eyebrow}</span>
-              <h1>{slide.title}</h1>
-              <p>{slide.text}</p>
-              <span className="hero-script">A taste of togetherness.</span>
-            </div>
-            <div className="hero-art">
-              <span className="hero-ring" />
-              <span className="hero-stamp">
-                PASS IT
-                <br />
-                AROUND<span>✳</span>
-              </span>
-              <div className="hero-pack">
-                <PackPreview image={product.image} large>
+        <div className="hero-stage">
+          <AnimatePresence mode="sync" initial={false}>
+            <motion.div
+              key={index}
+              className="hero-slide"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: reduced ? 0 : 0.45 }}
+            >
+              <motion.div
+                className="hero-copy"
+                initial={reduced ? false : { opacity: 0, y: 14 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: reduced ? 0 : 0.4,
+                  delay: reduced ? 0 : 0.04,
+                }}
+              >
+                <span className="eyebrow">{slide.eyebrow}</span>
+                <h1>{slide.title}</h1>
+                <p>{slide.text}</p>
+                <span className="hero-script">A taste of togetherness.</span>
+              </motion.div>
+              <motion.div
+                className="hero-art"
+                initial={reduced ? false : { opacity: 0, y: 14 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: reduced ? 0 : 0.4,
+                  delay: reduced ? 0 : 0.12,
+                }}
+              >
+                <span className="hero-ring" />
+                <span className="hero-stamp">
+                  PASS IT
+                  <br />
+                  AROUND<span>✳</span>
+                </span>
+                <div className="hero-pack">
                   <Pack product={product} large />
-                </PackPreview>
-              </div>
-              <HoverMedia
-                className="hero-bowl"
-                src={product.image}
-                width="280"
-                height="280"
-                alt="Illustrative namkeen serving"
-              />
-              <span className="art-caption">
-                Serving suggestion · Concept pack
-              </span>
-            </div>
-          </motion.div>
-        </AnimatePresence>
+                </div>
+                <img
+                  className="hero-bowl"
+                  src={product.image}
+                  width="280"
+                  height="280"
+                  alt="Illustrative namkeen serving"
+                />
+                <span className="art-caption">
+                  Serving suggestion · Concept pack
+                </span>
+              </motion.div>
+            </motion.div>
+          </AnimatePresence>
+        </div>
         <div className="hero-controls">
           <span className="slide-number">
             0{index + 1}
@@ -118,7 +124,7 @@ export function Hero() {
               </button>
             ))}
           </div>
-          <div className="arrows">
+          {/* <div className="arrows">
             <button
               className="icon-button"
               aria-label="Previous slide"
@@ -141,7 +147,7 @@ export function Hero() {
             >
               {paused ? <Play size={16} /> : <Pause size={16} />}
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>

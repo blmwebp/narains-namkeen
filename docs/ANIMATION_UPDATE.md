@@ -1,28 +1,41 @@
-# Animation and hover update
+# Homepage motion and product image swaps
 
-## Hero
-- Autoplay interval: 3000 ms in `src/components/hero.tsx`.
-- Pointer hover no longer pauses autoplay. Explicit pause, focus within controls, hidden browser tabs and reduced-motion preference still pause it.
-- Coordinated slide transition with short blur, vertical movement and masked headline entrance.
-- No CTA buttons were added to the hero.
+## Product cards
 
-## Images
-- `HoverMedia` provides a true alternate-image reveal using clipping and crossfade.
-- Product cards reveal the serving photo behind the concept pack when hovering anywhere on the card or keyboard focusing the link.
-- Product detail gallery temporarily switches pack/serving on hover or focus; its existing buttons remain the persistent touch controls.
-- Category, recipe and news cards reveal alternate photos when hovering anywhere on the card or focusing the link.
-- Standalone story/article/hero images support keyboard focus and a touch-only toggle button.
-- Text-only sections receive motion/hover styling, rather than unrelated images. Brand logos remain unchanged.
-- Generic demo photographs are reused; pass `alternateSrc` into HoverMedia to supply a specific second photo. Replace these reference images with approved photography before launch.
+The reusable `ProductImageSwap` is used by product cards on the homepage's
+“MEET THE COLLECTION” section and the Products listing only. Its primary
+view is the existing concept pack; the decorative secondary image fades in only
+after it loads. A failed secondary image leaves the pack visible. On touch
+screens, product cards keep their normal single-tap navigation.
 
-## Section and page motion
-- Staggered rising grid cards, clipped scroll reveals, heading entrances and route-entry transitions.
-- SectionMotion uses IntersectionObserver, runs once per entry, and cleans up when navigating away.
-- Reduced-motion preference turns off movement; hover images still change instantly.
-- Native scrolling and existing navigation remain intact.
+Edit each product's `hoverImage` in `src/content/products.ts`. The current
+secondary photos are the credited, illustrative local `sev.jpg` and
+`mixture.jpg` assets; they are not product-specific photography.
 
-## Reference
-https://animmasterlib.dev/ was reviewed for hover, slider, grid and page transition categories. Its component source is a paid downloadable collection and was not supplied. These are original CSS/Motion implementations inspired by those categories, not licensed Animmaster source or an imported Animmaster package.
+## Homepage motion
 
-## Files to edit
-`src/components/hero.tsx`, `hover-media.tsx`, `section-motion.tsx`, `cards.tsx`, `product-detail.tsx`, `src/app/template.tsx`, and the Motion refresh block at the end of `src/app/globals.css`.
+- Hero auto-advances every 3000 ms. Its crossfade is 450 ms, with text and art
+  appearing over 400 ms and staggered by 80 ms. Timing and pause logic live in
+  `src/components/hero.tsx`.
+- Section headings fade up 22 px over 600 ms.
+- Homepage card groups stagger by 80 ms; collection-card entrances use only
+  opacity and vertical translation.
+- The story image uses a subtle clip reveal. Its story text and the final
+  partner block use the same restrained fade-up.
+- Scroll reveals are initialized only on the homepage and remain visible when
+  JavaScript, IntersectionObserver, or reduced-motion settings prevent motion.
+- Non-collection imagery and product-detail images do not swap.
+
+Image crossfade and reveal durations are in the scoped rules at the end of
+`src/app/globals.css`. The existing site-level styling, content and page
+navigation are unchanged.
+
+## Free references reviewed
+
+- React Bits Fade Content: https://www.reactbits.dev/animations/fade-content
+- Motion for React: https://motion.dev/docs/react
+- Motion scroll animations: https://motion.dev/docs/react-scroll-animations
+
+The site uses its already-installed `motion` package for the hero transition
+and original scoped CSS/IntersectionObserver reveals. No paid component source
+or second animation library was added.

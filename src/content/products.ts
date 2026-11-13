@@ -9,6 +9,7 @@ export type Product = {
   ingredients: string;
   allergens: string;
   shelfLife: string;
+  hoverImage: string;
 };
 export const categories = [
   "Bhujia & Sev",
@@ -24,6 +25,7 @@ const entries = [
     "Fine, golden strands with a lively potato-and-spice crunch.",
     "#db3e29",
     "sev",
+    "mixture",
   ],
   [
     "ratlami-sev",
@@ -32,6 +34,7 @@ const entries = [
     "A bold peppery bite for those who like a little extra spice.",
     "#265b49",
     "sev",
+    "mixture",
   ],
   [
     "nylon-sev",
@@ -40,6 +43,7 @@ const entries = [
     "Delicate strands, ready to finish your favourite chaat.",
     "#d69d24",
     "sev",
+    "mixture",
   ],
   [
     "khatta-meetha",
@@ -48,6 +52,7 @@ const entries = [
     "A playful meeting of sweet, tangy and delightfully crunchy.",
     "#367078",
     "mixture",
+    "sev",
   ],
   [
     "navratan-mixture",
@@ -56,6 +61,7 @@ const entries = [
     "A little of everything, for everyone around the table.",
     "#743b68",
     "mixture",
+    "sev",
   ],
   [
     "classic-mixture",
@@ -64,6 +70,7 @@ const entries = [
     "An easy-going mix for everyday snack breaks.",
     "#b84c25",
     "mixture",
+    "sev",
   ],
   [
     "masala-boondi",
@@ -72,6 +79,7 @@ const entries = [
     "Tiny golden bites with a generous touch of masala.",
     "#9c522c",
     "mixture",
+    "sev",
   ],
   [
     "crunchy-mathri",
@@ -80,6 +88,7 @@ const entries = [
     "A savoury tea-time favourite with a satisfying bite.",
     "#557244",
     "mixture",
+    "sev",
   ],
   [
     "moong-dal",
@@ -88,6 +97,7 @@ const entries = [
     "Simply seasoned, lightly salted and full of crunch.",
     "#bd8524",
     "mixture",
+    "sev",
   ],
   [
     "masala-peanuts",
@@ -96,6 +106,7 @@ const entries = [
     "A nutty crunch with a warming spice finish.",
     "#994234",
     "mixture",
+    "sev",
   ],
   [
     "roasted-chana",
@@ -104,6 +115,7 @@ const entries = [
     "A simple, savoury companion for a busy afternoon.",
     "#48663f",
     "mixture",
+    "sev",
   ],
   [
     "cornflake-mix",
@@ -112,16 +124,18 @@ const entries = [
     "Crispy flakes and familiar spices in every handful.",
     "#c36928",
     "mixture",
+    "sev",
   ],
 ];
 export const products: Product[] = entries.map(
-  ([slug, name, category, description, colour, image]) => ({
+  ([slug, name, category, description, colour, image, hoverImage]) => ({
     slug,
     name,
     category,
     description,
     colour,
     image: "/images/" + image + ".jpg",
+    hoverImage: "/images/" + hoverImage + ".jpg",
     sizes: ["100 g", "200 g", "400 g"],
     ingredients:
       "Sample only: gram flour, vegetable oil, salt and spices. Replace with approved pack information.",

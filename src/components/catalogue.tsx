@@ -110,7 +110,9 @@ export function Catalogue({
           key={category + q}
         >
           {kind === "products"
-            ? filtered.map((p) => <ProductCard key={p.slug} product={p} />)
+            ? filtered.map((p) => (
+                <ProductCard key={p.slug} product={p} imageSwap />
+              ))
             : filteredArticles.map((a) => (
                 <ArticleCard key={a.slug} article={a} kind={kind} />
               ))}

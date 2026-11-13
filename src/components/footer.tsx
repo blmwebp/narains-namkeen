@@ -43,7 +43,7 @@ export function Footer() {
       </div>
       <div className="container footer-bottom">
         <span>
-          © {new Date().getFullYear()} Narain’s Namkeen · Design preview
+          © {new Date().getFullYear()} Narain’s Namkeen
         </span>
         {/* <Link href="/credits/">Image credits</Link> */}
         <Link href="/privacy/">Privacy</Link>

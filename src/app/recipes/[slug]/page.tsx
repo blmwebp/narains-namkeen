@@ -1,4 +1,3 @@
-import { HoverMedia, PackPreview } from "@/components/hover-media";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { recipes } from "@/content/articles";
@@ -36,12 +35,13 @@ export default async function Page({
         <h1>{a.title}</h1>
         <p className="lead">{a.excerpt}</p>
       </header>
-      <HoverMedia
+      <img
         className="article-hero"
         src={a.image}
         width="1200"
         height="600"
         alt={a.title}
+        loading="lazy"
       />
       <div className="reading">
         {/* <p className="sample-label">

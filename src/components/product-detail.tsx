@@ -4,36 +4,11 @@ import type { Product } from "@/content/products";
 import { Pack } from "./pack";
 export function ProductDetail({ product: p }: { product: Product }) {
   const [size, setSize] = useState(p.sizes[0]);
-  const [photo, setPhoto] = useState(0);
   return (
     <div className="detail-grid">
       <div>
         <div className="detail-stage" style={{ background: p.colour + "12" }}>
-          <div
-            className={"detail-swap " + (photo === 1 ? "show-serving" : "")}
-            tabIndex={0}
-            role="group"
-            aria-label="Product gallery. Hover or focus to preview the alternate view."
-          >
-            <div className="detail-pack">
-              <Pack product={p} large />
-            </div>
-            <img
-              className="detail-serving"
-              src={p.image}
-              width="700"
-              height="600"
-              alt="Illustrative serving; not an actual product photograph"
-            />
-          </div>
-        </div>
-        <div className="filters">
-          <button aria-pressed={photo === 0} onClick={() => setPhoto(0)}>
-            Concept pack
-          </button>
-          <button aria-pressed={photo === 1} onClick={() => setPhoto(1)}>
-            Serving photo
-          </button>
+          <Pack product={p} large />
         </div>
       </div>
       <div className="detail-copy">

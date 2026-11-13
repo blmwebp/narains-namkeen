@@ -1,4 +1,3 @@
-import { HoverMedia, PackPreview } from "@/components/hover-media";
 import Link from "next/link";
 export const metadata = { title: "Our Story" };
 export default function Page() {
@@ -14,12 +13,13 @@ export default function Page() {
         <p>A warm introduction to the world of Narain’s Namkeen.</p>
       </section>
       <section className="container story-split section">
-        <HoverMedia
+        <img
           className="rounded-photo"
           src="/images/chai.jpg"
           width="700"
           height="600"
           alt="Chai and everyday moments"
+          loading="lazy"
         />
         <div>
           {/* <span className="sample-label"></span> */}

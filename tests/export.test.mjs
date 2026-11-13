@@ -36,6 +36,22 @@ test("exported internal page links and images resolve", () => {
   }
   assert.deepEqual(failures, []);
 });
+test("product image swaps are limited to the collection and catalogue", () => {
+  const count = (html, pattern) => [...html.matchAll(pattern)].length;
+  const home = readFileSync(join(root, "index.html"), "utf8");
+  const catalogue = readFileSync(join(root, "products/index.html"), "utf8");
+  const detail = readFileSync(
+    join(root, "products/aloo-bhujia/index.html"),
+    "utf8",
+  );
+
+  assert.equal(count(home, /class="product-image-swap"/g), 4);
+  assert.equal(
+    count(catalogue, /class="product-card"/g),
+    count(catalogue, /class="product-image-swap"/g),
+  );
+  assert.equal(count(detail, /class="product-image-swap"/g), 0);
+});
 test("preview is excluded from search indexing", () => {
   assert.match(readFileSync(join(root, "index.html"), "utf8"), /noindex/);
   assert.match(readFileSync(join(root, "robots.txt"), "utf8"), /Disallow: \//);
